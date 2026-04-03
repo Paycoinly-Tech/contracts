@@ -1,0 +1,17 @@
+# Lib
+/lib
+
+# Compiler files
+cache/
+out/
+
+broadcast/
+
+# Docs
+docs/
+
+node_modules/
+
+# Dotenv file
+.env
+.env.key

@@ -1,0 +1,17 @@
+{
+  "name": "pk",
+  "version": "1.0.0",
+  "description": "For .env.key",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "pk.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "viem": "^2.46.1"
+  }
+}

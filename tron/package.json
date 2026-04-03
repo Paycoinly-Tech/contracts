@@ -1,0 +1,30 @@
+{
+  "name": "pk-gen",
+  "version": "1.0.0",
+  "description": "**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "tronbox-config.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "tronbox compile",
+    "deploy": "tronbox migrate",
+    "test": "tronbox test --network test",
+    "localnet": "docker pull tronbox/tre:dev && docker run -p 9090:9090 --rm --name tron tronbox/tre:dev"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.28.6",
+    "@openzeppelin/contracts": "^5.4.0",
+    "@openzeppelin/contracts-upgradeable": "^5.4.0",
+    "@openzeppelin/upgrades-core": "^1.44.2",
+    "tronbox": "^4.5.0",
+    "viem": "^2.45.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.4"
+  }
+}

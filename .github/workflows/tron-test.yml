@@ -1,0 +1,43 @@
+name: Tron Test
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - "*"
+  workflow_dispatch:
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    name: Tron project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Install Packages
+        run: npm install
+        working-directory: tron
+
+      - name: Run localnet
+        run: npm run localnet & sleep 30
+        working-directory: tron
+
+      - name: Compile Contracts
+        run: npx tronbox compile
+        working-directory: tron
+
+      - name: Test deployment on localnet
+        run: npx tronbox migrate
+        working-directory: tron
+
+      - name: Run Tron tests
+        run: npx tronbox test --network test
+        working-directory: tron

@@ -1,0 +1,50 @@
+name: EVM Contract Test
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - "*"
+  workflow_dispatch:
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    name: Foundry project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Install Packages
+        run: source install.sh
+        working-directory: contract/cmd
+
+      - name: Show Forge version
+        run: forge --version
+        working-directory: contract
+
+      - name: Run Forge fmt
+        run: forge fmt --check
+        working-directory: contract
+
+      - name: Run Forge build
+        run: forge build --sizes
+        working-directory: contract
+
+      - name: Run Forge tests
+        run: forge test -vvv
+        working-directory: contract
+
+      - name: Run Forge coverage
+        run: forge coverage
+        working-directory: contract
